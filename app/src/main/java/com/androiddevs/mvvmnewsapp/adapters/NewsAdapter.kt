@@ -12,20 +12,15 @@ import com.androiddevs.mvvmnewsapp.models.Article
 import com.bumptech.glide.Glide
 
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
-
-
-
     inner class ArticleViewHolder(val binding: ItemArticlePreviewBinding): RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
         }
-
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem
         }
-
     }
 
     val differ = AsyncListDiffer(this, differCallback)
@@ -47,13 +42,11 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
                 binding.tvPublishedAt.text = publishedAt
                 onItemClickListener?.let{ it(this) } }
         }
-
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-
 
     private var onItemClickListener: ((Article) -> Unit)? = null
 
